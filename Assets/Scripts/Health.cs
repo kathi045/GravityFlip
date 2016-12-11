@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class Health : NetworkBehaviour {
 
 	public const int maxHealth = 100;
-	[SyncVar] public int currentHealth = maxHealth;
+	[SyncVar (hook = "OnChangeHealth")] public int currentHealth = maxHealth;
 	public RectTransform healthbar;
 
 	public void TakeDamage(int amount) {
@@ -17,10 +17,20 @@ public class Health : NetworkBehaviour {
 
 		currentHealth -= amount;
 		if (currentHealth <= 0) {
-			currentHealth = 0;
-			Debug.Log ("Dead!");
+			currentHealth = maxHealth;
+			RpcRespawn ();
 		}
+	}
 
-		healthbar.sizeDelta = new Vector2 (currentHealth, healthbar.sizeDelta.y);
+	// is called when SyncVar is being changed
+	void OnChangeHealth(int health) {
+		healthbar.sizeDelta = new Vector2 (health, healthbar.sizeDelta.y);
+	}
+
+	[ClientRpc]
+	void RpcRespawn() {
+		if (isLocalPlayer) {
+			transform.position = Vector3.zero;
+		}
 	}
 }
