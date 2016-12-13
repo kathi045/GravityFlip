@@ -18,13 +18,13 @@ public class Health : NetworkBehaviour {
 		currentHealth -= amount;
 		if (currentHealth <= 0) {
 			currentHealth = maxHealth;
-			RpcRespawn ();
+			RpcRespawn();
 		}
 	}
 
 	// is called when SyncVar is being changed
 	void OnChangeHealth(int health) {
-		healthbar.sizeDelta = new Vector2 (health, healthbar.sizeDelta.y);
+		healthbar.sizeDelta = new Vector2(health, healthbar.sizeDelta.y);
 	}
 
 	[ClientRpc]
