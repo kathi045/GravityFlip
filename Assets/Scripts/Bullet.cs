@@ -8,19 +8,18 @@ public class Bullet : NetworkBehaviour {
     private Rigidbody2D shootingPlayer = null;
 
 	void OnCollisionEnter2D(Collision2D col) {
-		GameObject hit = col.gameObject;			// gameobject that was hit by the bullet
-		Health health = hit.GetComponent<Health>();
-        Rigidbody2D hitPlayer = hit.GetComponent<Rigidbody2D>();
+		GameObject hitObject = col.gameObject;			// gameobject that was hit by the bullet
+		Health health = hitObject.GetComponent<Health>();
+		Rigidbody2D hitObjectRb = hitObject.GetComponent<Rigidbody2D>();
 
         if (health != null)
         {
-            if (hitPlayer != shootingPlayer)
-            {
-                health.TakeDamage(10);
-            }
+			if (hitObjectRb != shootingPlayer) {
+				health.TakeDamage (10);
+			}
 		}
 
-        Destroy(gameObject);
+		Destroy (gameObject);
 	}
 
     public void setShootingPlayer(Rigidbody2D shootingPlayer)
