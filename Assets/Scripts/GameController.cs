@@ -5,37 +5,40 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    private static float gravity = 2.0f;            // default gravity
-    private static float defaultPlayerSpeed = 4.5f; // default player walk speed
-    private static float maxPlayerSpeed = 10.0f;    // default maximum player walk speed
-    private static float bulletSpeed = 6.0f;        // default bullet speed
-    private static int bulletDamage = 15;           // default damage of a single bullet
-    private static int maximumPlayerHealth = 100;   // default player health
+    private static float gravity = 2.0f;                // default gravity
+    private static float defaultPlayerSpeed = 4.5f;     // default player walk speed
+    private static float maxPlayerSpeed = 10.0f;        // default maximum player walk speed
+    private static float bulletSpeed = 6.0f;            // default bullet speed
+    private static int bulletDamage = 15;               // default damage of a single bullet
+    private static int maximumPlayerHealth = 100;       // default player health
+    private bool dieOnPlayerCollision = true;           // default for chase mode
 
-    public Text scoreTextPlayer1;
-    public Text scoreTextPlayer2;
-    public int scorePlayer1;
-    public int scorePlayer2;
+    public static Text scoreTextPlayer1;
+    public static Text scoreTextPlayer2;
+    public static int scorePlayer1;
+    public static int scorePlayer2;
 
 	// Use this for initialization
 	void Start () {
         scorePlayer1 = 0;
         scorePlayer2 = 0;
+        scoreTextPlayer1 = GameObject.Find("ScorePlayer1").GetComponent<Text>();
+        scoreTextPlayer2 = GameObject.Find("ScorePlayer2").GetComponent<Text>();
         UpdateScore();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
-    void UpdateScore()
+    public static void UpdateScore()
     {
         scoreTextPlayer1.text = "Player 1:   " + scorePlayer1;
         scoreTextPlayer2.text = "Player 2:   " + scorePlayer2;
     }
 
-    public void AddScore(int newScoreValuePlayer1, int newScoreValuePlayer2)
+    public static void AddScore(int newScoreValuePlayer1, int newScoreValuePlayer2)
     {
         scorePlayer1 += newScoreValuePlayer1;
         scorePlayer2 += newScoreValuePlayer2;
@@ -70,5 +73,15 @@ public class GameController : MonoBehaviour {
     public static int GetMaximumPlayerHealth()
     {
         return maximumPlayerHealth;
+    }
+
+    public bool GetDieOnPlayerCollision()
+    {
+        return dieOnPlayerCollision;
+    }
+
+    public void SetDieOnPlayerCollision(bool chaseModeActivated)
+    {
+        dieOnPlayerCollision = chaseModeActivated;
     }
 }

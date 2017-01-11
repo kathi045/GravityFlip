@@ -20,6 +20,7 @@ public class Health : NetworkBehaviour {
 		if (currentHealth <= 0) {
 			currentHealth = maxHealth;
             GetComponentInParent<PlayerController>().RpcIncreaseSpeed(0.5f);
+            RpcAddScore();
             RpcRespawn();
 		}
 	}
@@ -39,7 +40,13 @@ public class Health : NetworkBehaviour {
             //newSpawnPosition.y -= 1;
             transform.position = newSpawnPosition;
 
-            //GameObject.Find("DebugMessage").GetComponent<Text>().text = "Debug: Position: " + transform.position + " | PlatformIndex: " + spawnIndex + " | Platform length: " + platforms.Length;
+            GameObject.Find("DebugMessage").GetComponent<Text>().text = "Debug: Position: " + transform.position + " | PlatformIndex: " + spawnIndex + " | Platform length: " + platforms.Length;
 		}
 	}
+
+    [ClientRpc]
+    void RpcAddScore()
+    {
+        GameController.AddScore(100, 0);
+    }
 }
