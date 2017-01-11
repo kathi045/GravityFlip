@@ -11,7 +11,7 @@ public class Health : NetworkBehaviour {
 	[SyncVar (hook = "OnChangeHealth")] public int currentHealth = maxHealth;
 	public RectTransform healthbar;
 
-	public void TakeDamage(int amount) {
+	public void TakeDamage(int amount, bool victory) {
 		if (!isServer) {
 			return;
 		}
@@ -20,7 +20,9 @@ public class Health : NetworkBehaviour {
 		if (currentHealth <= 0) {
 			currentHealth = maxHealth;
             GetComponentInParent<PlayerController>().RpcIncreaseSpeed(0.5f);
-            RpcAddScore();
+			if (victory == true) {
+				RpcAddScore ();
+			}
             RpcRespawn();
 		}
 	}
@@ -45,8 +47,13 @@ public class Health : NetworkBehaviour {
 	}
 
     [ClientRpc]
-    void RpcAddScore()
+	void RpcAddScore()
     {
-        GameController.AddScore(100, 0);
+		if (isLocalPlayer) {
+			GameController.AddScore (0, 100);
+		} else {
+			GameController.AddScore (100, 0);
+		}
+
     }
 }

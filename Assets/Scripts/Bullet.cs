@@ -15,7 +15,7 @@ public class Bullet : NetworkBehaviour {
         if (health != null)
         {
 			if (hitObjectRb != shootingPlayer) {
-				health.TakeDamage(GameController.GetBulletDamage());
+				health.TakeDamage(GameController.GetBulletDamage(), true);
 			}
 		}
 

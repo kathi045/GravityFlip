@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class GameController : MonoBehaviour {
+public class GameController : NetworkBehaviour {
 
     private static float gravity = 2.0f;                // default gravity
     private static float defaultPlayerSpeed = 4.5f;     // default player walk speed
@@ -32,10 +33,16 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	[Command]
+	public void CmdUpdateScore() {
+		scoreTextPlayer1.text = "You:   " + scorePlayer1;
+		scoreTextPlayer2.text = "Enemy:   " + scorePlayer2;
+	}
+
     public static void UpdateScore()
     {
-        scoreTextPlayer1.text = "Player 1:   " + scorePlayer1;
-        scoreTextPlayer2.text = "Player 2:   " + scorePlayer2;
+        scoreTextPlayer1.text = "You:   " + scorePlayer1;
+        scoreTextPlayer2.text = "Enemy:   " + scorePlayer2;
     }
 
     public static void AddScore(int newScoreValuePlayer1, int newScoreValuePlayer2)
@@ -82,6 +89,6 @@ public class GameController : MonoBehaviour {
 
     public void SetDieOnPlayerCollision(bool chaseModeActivated)
     {
-        dieOnPlayerCollision = chaseModeActivated;
+		dieOnPlayerCollision = chaseModeActivated;
     }
 }

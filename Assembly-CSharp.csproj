@@ -48,11 +48,26 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Billboard.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\CustomNetworkManager.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
-     <Compile Include="Assets\Scripts\playerController.cs" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>D:/Programme/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\ActiveStateToggler.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\ApplicationManager.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\ChangeColor.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\DragMe.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\DragPanel.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\DropMe.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\PanelManager.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\QuitOnClick.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\ResizePanel.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\ScrollDetailTexture.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\SelectOnInput.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\ShowSliderValue.cs" />
+     <Compile Include="Assets\Unity UI\Scripts\TiltWindow.cs" />
+     <None Include="Assets\Unity UI\Fonts\Jupiter\LICENSE.txt" />
+     <None Include="Assets\Unity UI\Textures and Sprites\SF UI\Background\LICENSE.txt" />
+     <None Include="Assets\Unity UI\Materials\UI-Default-No-Alpha.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Programme/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -67,9 +82,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>D:/Programme/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>D:/Programme/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>D:/Programme/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
