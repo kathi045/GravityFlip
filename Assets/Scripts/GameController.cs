@@ -7,8 +7,13 @@ using UnityEngine.Networking;
 public class GameController : NetworkBehaviour {
 
     private static float gravity = 2.0f;                // default gravity
+<<<<<<< HEAD
     private static float defaultPlayerSpeed = 6.0f;     // default player walk speed
     private static float maxPlayerSpeed = 12.0f;        // default maximum player walk speed
+=======
+    private static float defaultPlayerSpeed = 4.5f;     // default player walk speed
+    private static float maxPlayerSpeed = 10.0f;        // default maximum player walk speed
+>>>>>>> 0e42a6d63e3e6c62c3e7722b016b75e0114e27eb
     private static float bulletSpeed = 6.0f;            // default bullet speed
     private static int bulletDamage = 15;               // default damage of a single bullet
     private static int maximumPlayerHealth = 100;       // default player health

@@ -41,8 +41,13 @@ public class Health : NetworkBehaviour {
             newSpawnPosition = platforms[spawnIndex].GetComponent<Transform>().position;
             //newSpawnPosition.y -= 1;
             transform.position = newSpawnPosition;
+<<<<<<< HEAD
 			GetComponentInParent<PlayerController> ().ResetPlayerSpeed ();
             //GameObject.Find("DebugMessage").GetComponent<Text>().text = "Debug: Position: " + transform.position + " | PlatformIndex: " + spawnIndex + " | Platform length: " + platforms.Length;
+=======
+
+            GameObject.Find("DebugMessage").GetComponent<Text>().text = "Debug: Position: " + transform.position + " | PlatformIndex: " + spawnIndex + " | Platform length: " + platforms.Length;
+>>>>>>> 0e42a6d63e3e6c62c3e7722b016b75e0114e27eb
 		}
 	}
 
