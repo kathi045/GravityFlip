@@ -7,17 +7,14 @@ using UnityEngine.Networking;
 public class GameController : NetworkBehaviour {
 
     private static float gravity = 2.0f;                // default gravity
-<<<<<<< HEAD
     private static float defaultPlayerSpeed = 6.0f;     // default player walk speed
     private static float maxPlayerSpeed = 12.0f;        // default maximum player walk speed
-=======
-    private static float defaultPlayerSpeed = 4.5f;     // default player walk speed
-    private static float maxPlayerSpeed = 10.0f;        // default maximum player walk speed
->>>>>>> 0e42a6d63e3e6c62c3e7722b016b75e0114e27eb
     private static float bulletSpeed = 6.0f;            // default bullet speed
     private static int bulletDamage = 15;               // default damage of a single bullet
     private static int maximumPlayerHealth = 100;       // default player health
     private bool dieOnPlayerCollision = true;           // default for chase mode
+
+    private static int pointsForKill = 100;             // default points for a player kill
 
     public static Text scoreTextPlayer1;
     public static Text scoreTextPlayer2;
@@ -25,7 +22,8 @@ public class GameController : NetworkBehaviour {
     public static int scorePlayer2;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         scorePlayer1 = 0;
         scorePlayer2 = 0;
         scoreTextPlayer1 = GameObject.Find("ScorePlayer1").GetComponent<Text>();
@@ -34,14 +32,9 @@ public class GameController : NetworkBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 
-	}
-
-	[Command]
-	public void CmdUpdateScore() {
-		scoreTextPlayer1.text = "You:   " + scorePlayer1;
-		scoreTextPlayer2.text = "Enemy:   " + scorePlayer2;
 	}
 
     public static void UpdateScore()
@@ -95,5 +88,10 @@ public class GameController : NetworkBehaviour {
     public void SetDieOnPlayerCollision(bool chaseModeActivated)
     {
 		dieOnPlayerCollision = chaseModeActivated;
+    }
+
+    public static int GetPointsForKill()
+    {
+        return pointsForKill;
     }
 }

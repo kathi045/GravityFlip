@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
-  healthbar: {fileID: 224983316981268304}
+  healthBar: {fileID: 224374699955846320}
 --- !u!114 &114867833531326630
 MonoBehaviour:
   m_ObjectHideFlags: 1
