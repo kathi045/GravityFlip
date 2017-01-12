@@ -102,7 +102,6 @@ GameObject:
   - component: {fileID: 164212}
   - component: {fileID: 164211}
   - component: {fileID: 164210}
-  - component: {fileID: 164209}
   m_Layer: 5
   m_Name: StartGamePanel
   m_TagString: Untagged
@@ -134,19 +133,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &164209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 164207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a0e34da4572ece49bd229f3d03cdc61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSystem: {fileID: 769078307}
-  selectedObject: {fileID: 1339987607}
 --- !u!114 &164210
 MonoBehaviour:
   m_ObjectHideFlags: 0

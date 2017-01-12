@@ -46,10 +46,9 @@ public class Health : NetworkBehaviour {
 		if (isLocalPlayer)
         {
 			Vector3 newSpawnPosition = Vector3.zero;
-            GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-            int spawnIndex = Random.Range(0, platforms.Length);
-            newSpawnPosition = platforms[spawnIndex].GetComponent<Transform>().position;
-            //newSpawnPosition.y -= 1;
+            GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            int spawnIndex = Random.Range(0, spawnPoints.Length);
+            newSpawnPosition = spawnPoints[spawnIndex].GetComponent<Transform>().position;
             transform.position = newSpawnPosition;
             //GameObject.Find("DebugMessage").GetComponent<Text>().text = "Debug: Position: " + transform.position + " | PlatformIndex: " + spawnIndex + " | Platform length: " + platforms.Length;
 		}
