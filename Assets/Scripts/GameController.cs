@@ -12,9 +12,9 @@ public class GameController : NetworkBehaviour {
     private static float bulletSpeed = 6.0f;            // default bullet speed
     private static int bulletDamage = 15;               // default damage of a single bullet
     private static int maximumPlayerHealth = 100;       // default player health
-    private bool dieOnPlayerCollision = true;           // default for chase mode
-
+    private static bool dieOnPlayerCollision = true;    // default for chase mode
     private static int pointsForKill = 100;             // default points for a player kill
+    private static int pointsForWin = 1000;             // default points for winning the game
 
     public static Text scoreTextPlayer1;
     public static Text scoreTextPlayer2;
@@ -80,18 +80,28 @@ public class GameController : NetworkBehaviour {
         return maximumPlayerHealth;
     }
 
-    public bool GetDieOnPlayerCollision()
+    public static bool GetDieOnPlayerCollision()
     {
         return dieOnPlayerCollision;
     }
 
-    public void SetDieOnPlayerCollision(bool chaseModeActivated)
+    public static void SetDieOnPlayerCollision(bool activated)
     {
-		dieOnPlayerCollision = chaseModeActivated;
+        dieOnPlayerCollision = activated;
     }
 
     public static int GetPointsForKill()
     {
         return pointsForKill;
+    }
+
+    public static int GetPointsForWin()
+    {
+        return pointsForWin;
+    }
+
+    public static void SetPointsForWin(int points)
+    {
+        pointsForWin = points;
     }
 }
