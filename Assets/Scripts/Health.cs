@@ -11,6 +11,13 @@ public class Health : NetworkBehaviour {
 	[SyncVar (hook = "OnChangeHealth")] public int currentHealth = maxHealth;
 	public RectTransform healthBar;
 
+    public void PlayerCollision()
+    {
+        currentHealth = maxHealth;
+        GetComponentInParent<PlayerController>().RpcResetPlayerSpeed();
+        RpcRespawn(true);
+    }
+
 	public void TakeDamage(int amount, bool victory)
     {
 		if (!isServer)
@@ -30,7 +37,7 @@ public class Health : NetworkBehaviour {
 				RpcAddScore();
 			}
 
-            RpcRespawn();
+            RpcRespawn(false);
 		}
 	}
 
@@ -40,19 +47,17 @@ public class Health : NetworkBehaviour {
 		healthBar.sizeDelta = new Vector2(health, healthBar.sizeDelta.y);
 	}
 
-	Vector3[] getPlayerPositions() {
-//		if (!isServer) {
-//			return;
-//		}
-
-		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
+	Vector3[] getPlayerPositions()
+    {
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 		int count = players.Length;
-		Debug.Log ("count players: " + count);
+		Debug.Log("count players: " + count);
 		Vector3[] positions = new Vector3[count];
 
 		int i = 0;
-		foreach (GameObject player in players) {
-			Debug.Log ("player position: " + player.transform.position);
+		foreach (GameObject player in players)
+        {
+			Debug.Log("player position: " + player.transform.position);
 			positions[i++] = player.transform.position;
 		}
 
@@ -60,12 +65,14 @@ public class Health : NetworkBehaviour {
 	}
 
 	[ClientRpc]
-	void RpcRespawn()
+	void RpcRespawn(bool playerCollision)
     {
-		Vector3[] playerPositions = getPlayerPositions ();				// positions of all players
-		Vector3 playerPosition = Vector3.zero;											// position of the other player
-		foreach (Vector3 pos in playerPositions) {
-			if (pos != this.transform.position) {
+		Vector3[] playerPositions = getPlayerPositions();				// positions of all players
+		Vector3 playerPosition = Vector3.zero;							// position of the other player
+		foreach (Vector3 pos in playerPositions)
+        {
+			if (pos != this.transform.position)
+            {
 				playerPosition = pos;
 			}
 		}
@@ -77,39 +84,47 @@ public class Health : NetworkBehaviour {
 			float maxDistance = 0.0f;
 			Vector3 newSpawnPosition = Vector3.zero;
 
-			if (playerPosition == Vector3.zero) {
-				int spawnIndex = Random.Range (0, spawnPoints.Length);
-				newSpawnPosition = spawnPoints [spawnIndex].GetComponent<Transform> ().position;
-			} else {
-				for(int i = 0; i < spawnPoints.Length; i++) {
+            // if player position could not be found or players collided, select a random spawn
+			if (playerPosition == Vector3.zero || playerCollision)
+            {
+				int spawnIndex = Random.Range(0, spawnPoints.Length);
+				newSpawnPosition = spawnPoints[spawnIndex].GetComponent<Transform>().position;
+			}
+            // otherwise choose the spawn that is furthest away
+            else
+            {
+				for (int i = 0; i < spawnPoints.Length; i++)
+                {
 					distance = Vector3.Distance(spawnPoints[i].transform.position, playerPosition);
-					if (distance > maxDistance) {
+					if (distance > maxDistance)
+                    {
 						maxDistance = distance;
-						newSpawnPosition = spawnPoints [i].transform.position;
+						newSpawnPosition = spawnPoints[i].transform.position;
 					}
 				}
 			}
            
-//            int spawnIndex = Random.Range(0, spawnPoints.Length);
-//            newSpawnPosition = spawnPoints[spawnIndex].GetComponent<Transform>().position;
             transform.position = newSpawnPosition;
-            //GameObject.Find("DebugMessage").GetComponent<Text>().text = "Debug: Position: " + transform.position + " | PlatformIndex: " + spawnIndex + " | Platform length: " + platforms.Length;
-		}
+        }
 	}
 
     [ClientRpc]
 	void RpcAddScore()
     {
-		if (isLocalPlayer) {
+		if (isLocalPlayer)
+        {
 			GameController.AddScore(0, GameController.GetPointsForKill());
-		} else {
+		}
+        else
+        {
 			GameController.AddScore(GameController.GetPointsForKill(), 0);
 		}
 
     }
 
 	[ClientRpc]
-	public void RpcDoubleKill() {
-		GameController.AddScore (-GameController.GetPointsForKill (), -GameController.GetPointsForKill ());
+	public void RpcSubstractScoreFromAll()
+    {
+		GameController.AddScore(-GameController.GetPointsForKill(), -GameController.GetPointsForKill());
 	}
 }

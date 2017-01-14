@@ -9,12 +9,13 @@ public class GameController : NetworkBehaviour {
     private static float gravity = 2.0f;                // default gravity
     private static float defaultPlayerSpeed = 6.0f;     // default player walk speed
     private static float maxPlayerSpeed = 12.0f;        // default maximum player walk speed
-    private static float bulletSpeed = 6.0f;            // default bullet speed
+    private static float bulletSpeed = 2.0f;            // default bullet speed (added to current player speed)
     private static int bulletDamage = 15;               // default damage of a single bullet
     private static int maximumPlayerHealth = 100;       // default player health
     private static bool dieOnPlayerCollision = true;    // default for chase mode
     private static int pointsForKill = 100;             // default points for a player kill
     private static int pointsForWin = 1000;             // default points for winning the game
+    private static float shotDelay = 0.3f;              // default waiting time between shots
 
     public static Text scoreTextPlayer1;
     public static Text scoreTextPlayer2;
@@ -103,5 +104,15 @@ public class GameController : NetworkBehaviour {
     public static void SetPointsForWin(int points)
     {
         pointsForWin = points;
+    }
+
+    public static float GetShotDelay()
+    {
+        return shotDelay;
+    }
+
+    public static void SetShotDelay(float delay)
+    {
+        shotDelay = delay;
     }
 }
