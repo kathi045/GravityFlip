@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class Bullet : NetworkBehaviour {
 
     private Rigidbody2D shootingPlayer = null;
+	public GameObject explosionPrefab;
 
 	void OnCollisionEnter2D(Collision2D col)
     {
@@ -20,7 +21,7 @@ public class Bullet : NetworkBehaviour {
 				health.TakeDamage(GameController.GetBulletDamage(), true);
 			}
 		}
-
+		playExplosion ();
 		Destroy (gameObject);
 	}
 
@@ -28,4 +29,8 @@ public class Bullet : NetworkBehaviour {
     {
         this.shootingPlayer = shootingPlayer;
     }
+
+	void playExplosion() {
+		Instantiate (explosionPrefab, transform.position, Quaternion.identity);
+	}
 }
