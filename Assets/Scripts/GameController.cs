@@ -71,6 +71,11 @@ public class GameController : NetworkBehaviour {
         return bulletSpeed;
     }
 
+    public static void SetBulletDamage(int damage)
+    {
+        bulletDamage = damage;
+    }
+
     public static int GetBulletDamage()
     {
         return bulletDamage;

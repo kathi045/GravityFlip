@@ -19,9 +19,24 @@ public class OptionsMenu : MonoBehaviour {
 
     }
 
-	public void ChangeChaseMode(bool activated)
+    public void ChangeBulletDamage(float receivedIndex)
+    {
+        int[] damage = { 10, 15, 20, 25, 50, 100 };
+
+        int index = (int)receivedIndex;
+        if (index >= 0 && index < damage.Length)
+        {
+            GameController.SetBulletDamage(damage[index]);
+        }
+
+        Debug.Log("Bullet damage: " + GameController.GetBulletDamage());
+
+    }
+
+    public void ChangeChaseMode(bool activated)
     {
         GameController.SetDieOnPlayerCollision(activated);
+
         Debug.Log("Chase mode: " + GameController.GetDieOnPlayerCollision());
     }
 }
