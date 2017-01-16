@@ -51,13 +51,11 @@ public class Health : NetworkBehaviour {
     {
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 		int count = players.Length;
-		Debug.Log("count players: " + count);
 		Vector3[] positions = new Vector3[count];
 
 		int i = 0;
 		foreach (GameObject player in players)
         {
-			Debug.Log("player position: " + player.transform.position);
 			positions[i++] = player.transform.position;
 		}
 
@@ -103,8 +101,12 @@ public class Health : NetworkBehaviour {
 					}
 				}
 			}
-           
-            transform.position = newSpawnPosition;
+            
+			GetComponent<Rigidbody2D> ().position = new Vector2 (50.0f, 0.0f);
+			//transform.position = new Vector3 (50.0f, 0.0f, 0.0f);
+			System.DateTime dt = System.DateTime.Now + System.TimeSpan.FromSeconds (1);
+			do { } while (System.DateTime.Now < dt);
+        	transform.position = newSpawnPosition;
         }
 	}
 
