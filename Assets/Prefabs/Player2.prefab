@@ -329,6 +329,7 @@ MonoBehaviour:
     type: 2}
   bulletSpawn: {fileID: 4752416096938266}
   gameControllerObj: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!114 &114412149965203966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -464,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
-  m_SendInterval: 0.06666667
+  m_SendInterval: 0.04761905
   m_SyncRotationAxis: 3
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
