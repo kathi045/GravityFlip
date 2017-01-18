@@ -16,21 +16,22 @@ public class GameController : NetworkBehaviour {
     private static int pointsForKill = 100;             // default points for a player kill
     private static int pointsForWin = 1000;             // default points for winning the game
     private static float shotDelay = 0.3f;              // default waiting time between shots
+    private static bool gameEnded = false;              // flag for game end
 
     public static Text scoreTextPlayer1;
     public static Text scoreTextPlayer2;
     public static int scorePlayer1;
     public static int scorePlayer2;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         scorePlayer1 = 0;
         scorePlayer2 = 0;
         scoreTextPlayer1 = GameObject.Find("ScorePlayer1").GetComponent<Text>();
         scoreTextPlayer2 = GameObject.Find("ScorePlayer2").GetComponent<Text>();
         UpdateScore();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -42,6 +43,11 @@ public class GameController : NetworkBehaviour {
     {
         scoreTextPlayer1.text = "You:   " + scorePlayer1;
         scoreTextPlayer2.text = "Enemy:   " + scorePlayer2;
+
+        if (scorePlayer1 >= pointsForWin || scorePlayer2 >= pointsForWin)
+        {
+            gameEnded = true;
+        }
     }
 
     public static void AddScore(int newScoreValuePlayer1, int newScoreValuePlayer2)
@@ -119,5 +125,15 @@ public class GameController : NetworkBehaviour {
     public static void SetShotDelay(float delay)
     {
         shotDelay = delay;
+    }
+
+    public static bool GetGameEnded()
+    {
+        return gameEnded;
+    }
+
+    public static void SetGameEnded(bool end)
+    {
+        gameEnded = end;
     }
 }
