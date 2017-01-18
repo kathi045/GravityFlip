@@ -101,11 +101,6 @@ public class Health : NetworkBehaviour {
 					}
 				}
 			}
-            
-			GetComponent<Rigidbody2D> ().position = new Vector2 (50.0f, 0.0f);
-			//transform.position = new Vector3 (50.0f, 0.0f, 0.0f);
-			//System.DateTime dt = System.DateTime.Now + System.TimeSpan.FromSeconds (1);
-			//do { } while (System.DateTime.Now < dt);
         	transform.position = newSpawnPosition;
         }
 	}

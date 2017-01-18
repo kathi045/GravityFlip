@@ -330,6 +330,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 4752416096938266}
   gameControllerObj: {fileID: 0}
   gameController: {fileID: 0}
+  gameEndPanel: {fileID: 0}
 --- !u!114 &114412149965203966
 MonoBehaviour:
   m_ObjectHideFlags: 1
