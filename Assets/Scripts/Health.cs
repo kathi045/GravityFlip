@@ -122,6 +122,6 @@ public class Health : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcSubstractScoreFromAll()
     {
-		GameController.AddScore(-GameController.GetPointsForKill(), -GameController.GetPointsForKill());
+		GameController.AddScore(-GameController.GetMinusPointsForCollision(), -GameController.GetMinusPointsForCollision());
 	}
 }

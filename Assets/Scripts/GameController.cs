@@ -14,6 +14,7 @@ public class GameController : NetworkBehaviour {
     private static int maximumPlayerHealth = 100;       // default player health
     private static bool dieOnPlayerCollision = true;    // default for chase mode
     private static int pointsForKill = 100;             // default points for a player kill
+    private static int minusPointsForCollision = 25;    // default minus points for player collisions
     private static int pointsForWin = 1000;             // default points for winning the game
     private static float shotDelay = 0.3f;              // default waiting time between shots
     private static bool gameEnded = false;              // flag for game end
@@ -44,7 +45,7 @@ public class GameController : NetworkBehaviour {
         scoreTextPlayer1.text = "You:   " + scorePlayer1;
         scoreTextPlayer2.text = "Enemy:   " + scorePlayer2;
 
-        if (scorePlayer1 >= pointsForWin || scorePlayer2 >= pointsForWin)
+        if (scorePlayer1 >= pointsForWin || scorePlayer2 >= pointsForWin || scorePlayer1 <= -pointsForWin || scorePlayer2 <= -pointsForWin)
         {
             gameEnded = true;
         }
@@ -105,6 +106,11 @@ public class GameController : NetworkBehaviour {
     public static int GetPointsForKill()
     {
         return pointsForKill;
+    }
+
+    public static int GetMinusPointsForCollision()
+    {
+        return minusPointsForCollision;
     }
 
     public static int GetPointsForWin()
