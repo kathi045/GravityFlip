@@ -24,6 +24,8 @@ public class GameController : NetworkBehaviour {
     public static int scorePlayer1;
     public static int scorePlayer2;
 
+	private AudioSource audio;
+
     // Use this for initialization
     void Start ()
     {
@@ -32,6 +34,10 @@ public class GameController : NetworkBehaviour {
         scoreTextPlayer1 = GameObject.Find("ScorePlayer1").GetComponent<Text>();
         scoreTextPlayer2 = GameObject.Find("ScorePlayer2").GetComponent<Text>();
         UpdateScore();
+
+		audio = gameObject.GetComponent<AudioSource> ();
+		audio.clip = (AudioClip)Resources.Load ("GravityFlip_music");
+		audio.Play ();
     }
 	
 	// Update is called once per frame
